@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import GlobalStyles from './components/GlobalStyles';
+import Container from './components/Container';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+import './css/weather-icons.min.css';
+import './css/weather-icons-wind.min.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: React.FC = () => {
+	return (
+		<>
+			<GlobalStyles />
+			<Container>
+				<NavBar />
+				<Switch>
+					<Route path='' exact>
+						<Home />
+					</Route>
+					<Route path='/home' exact>
+						<Home />
+					</Route>
+					<Route path='*' exact>
+						<NotFound />
+					</Route>
+				</Switch>
+				<Footer />
+			</Container>
+		</>
+	);
+};
 
 export default App;
