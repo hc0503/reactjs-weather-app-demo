@@ -1,6 +1,7 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from './pages/Home';
+import Search from './pages/Search';
 import NotFound from './pages/NotFound';
 import GlobalStyles from './components/GlobalStyles';
 import Container from './components/Container';
@@ -16,11 +17,17 @@ const App: React.FC = () => {
 			<Container>
 				<NavBar />
 				<Switch>
-					<Route path='' exact>
+					<Route path='/' exact>
 						<Home />
 					</Route>
 					<Route path='/home' exact>
 						<Home />
+					</Route>
+					<Route path='/search/:query'>
+						<Search />
+					</Route>
+					<Route path='/search'>
+						<Redirect to='/home' />
 					</Route>
 					<Route path='*' exact>
 						<NotFound />
